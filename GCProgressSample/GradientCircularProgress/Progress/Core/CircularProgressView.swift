@@ -13,7 +13,6 @@ class CircularProgressView: UIView {
     var prop: Property?
     var messageLabel = UILabel()
     var centerPoint: CGPoint?
-    
     var message: String? {
         willSet {
             messageLabel.frame = frame
@@ -101,11 +100,15 @@ class CircularProgressView: UIView {
     }
     
     @objc private func viewDidEnterBackground(_ notification: Notification?) {
-        Animation().stop(gradientLayer)
+        if let isAnimateInBackgroud = prop?.isAnimateProgressInBackgroud, !isAnimateInBackgroud {
+            Animation().stop(gradientLayer)
+        }
     }
     
     @objc private func viewWillEnterForeground(_ notification: Notification?) {
-        Animation().start(gradientLayer)
+        if let isAnimateInBackgroud = prop?.isAnimateProgressInBackgroud, !isAnimateInBackgroud {
+            Animation().start(gradientLayer)
+        }
     }
     
     internal func initialize(frame: CGRect) {

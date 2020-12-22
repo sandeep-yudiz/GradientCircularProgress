@@ -33,6 +33,8 @@ public protocol StyleProperty {
     // Dismiss
     var dismissTimeInterval: Double? { get set }
     
+    var isAnimateProgressInBackgroud: Bool { get set }
+
     // Initialize
     init()
 }
@@ -75,7 +77,8 @@ internal struct Property {
     
     // Dismiss
     let dismissTimeInterval: Double?
-    
+    var isAnimateProgressInBackgroud: Bool = false
+
     // Progress Rect
     var progressRect: CGRect {
         let lineWidth: CGFloat = (arcLineWidth > baseLineWidth!) ? arcLineWidth : baseLineWidth!
@@ -98,5 +101,6 @@ internal struct Property {
         messageLabelFontColor = styles.messageLabelFontColor ?? UIColor.clear
         backgroundStyle       = styles.backgroundStyle
         dismissTimeInterval   = styles.dismissTimeInterval    ?? 0.8
+        isAnimateProgressInBackgroud   = style.isAnimateProgressInBackgroud
     }
 }
